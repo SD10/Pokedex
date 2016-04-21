@@ -31,6 +31,10 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     
     // MARK: - Methods
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     func parsePokemonCSV() {
         guard let path = NSBundle.mainBundle().pathForResource("pokemon", ofType: "csv") else {
             print("Failed to get path of pokemon.csv")
@@ -108,3 +112,4 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         return CGSizeMake(105, 105)
     }
 }
+
