@@ -69,6 +69,10 @@ class ViewController: UIViewController, UICollectionViewDelegate {
             print(error.debugDescription)
         }
     }
+    
+    @IBAction func toggleMusicPressed(sender: AnyObject) {
+        
+    }
 
 }
 

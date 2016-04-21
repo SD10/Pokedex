@@ -34,9 +34,22 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bvx-Dq-C1a">
+                                        <rect key="frame" x="548" y="6" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="GXS-2r-0q2"/>
+                                            <constraint firstAttribute="width" constant="44" id="WgK-Kv-gfF"/>
+                                        </constraints>
+                                        <state key="normal" image="music"/>
+                                        <connections>
+                                            <action selector="toggleMusicPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4ik-WW-Ddx"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.30342729680000002" green="0.41858578569999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="Bvx-Dq-C1a" firstAttribute="top" secondItem="Ke8-KF-2LV" secondAttribute="top" constant="6" id="7jW-YT-o4J"/>
+                                    <constraint firstAttribute="trailing" secondItem="Bvx-Dq-C1a" secondAttribute="trailing" constant="8" id="884-ek-yUR"/>
                                     <constraint firstItem="Nta-Bs-wfP" firstAttribute="centerY" secondItem="Ke8-KF-2LV" secondAttribute="centerY" id="A9D-O3-1dP"/>
                                     <constraint firstAttribute="height" constant="55" id="rC5-fj-5gT"/>
                                     <constraint firstItem="Nta-Bs-wfP" firstAttribute="centerX" secondItem="Ke8-KF-2LV" secondAttribute="centerX" id="vro-UU-HaQ"/>
@@ -127,11 +140,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="542" y="467"/>
+            <point key="canvasLocation" x="544" y="493"/>
         </scene>
     </scenes>
     <resources>
         <image name="101" width="120" height="120"/>
         <image name="bg" width="1920" height="1200"/>
+        <image name="music" width="100" height="100"/>
     </resources>
 </document>
