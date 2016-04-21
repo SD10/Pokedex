@@ -51,7 +51,7 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="297" translatesAutoresizingMaskIntoConstraints="NO" id="Io0-Wc-Ujw">
                                                     <rect key="frame" x="0.0" y="0.0" width="110" height="89"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udG-ZB-UNn">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="udG-ZB-UNn">
                                                     <rect key="frame" x="0.0" y="89" width="110" height="21"/>
                                                     <color key="backgroundColor" red="0.30342729680000002" green="0.41858578569999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>

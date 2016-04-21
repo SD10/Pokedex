@@ -80,17 +80,17 @@ enum ParserError: ErrorType {
 extension ViewController: UICollectionViewDataSource {
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
+        return pokemon.count > 0 ? 1 : 0
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 718
+        return pokemon.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PokemonCell", forIndexPath: indexPath) as? PokemonCell {
-            let pokemon = Pokemon(name: "Test", pokedexId: indexPath.row)
-            cell.configureCell(pokemon)
+            let pokemonForCell = pokemon[indexPath.row]
+            cell.configureCell(pokemonForCell)
             return cell
         } else {
             return UICollectionViewCell()
