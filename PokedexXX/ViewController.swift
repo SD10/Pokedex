@@ -7,13 +7,20 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController, UICollectionViewDelegate {
     
     // MARK: - Properties
     
-    @IBOutlet weak var collectionView: UICollectionView!
     var pokemon = [Pokemon]()
+    var musicPlayer = AVAudioPlayer()
+    
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+
     
     // MARK: - View Lifecycle
 
@@ -22,6 +29,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         collectionView.delegate = self
         collectionView.dataSource = self
         parsePokemonCSV()
+        configureMusicPlayer()
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,12 +44,9 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     }
     
     func parsePokemonCSV() {
-        guard let path = NSBundle.mainBundle().pathForResource("pokemon", ofType: "csv") else {
-            print("Failed to get path of pokemon.csv")
-            return
-        }
         
         do {
+            let path = try retrieveFilePath("pokemon", format: "csv")
             let csv = try CSV(contentsOfURL: path)
             let rows = csv.rows
             
@@ -60,7 +65,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
                     throw ParserError.InvalidCastToInt
                 }
             }
-            
+        } catch FilePathError.UnableRetrievePath {
+            print("Error retrieving file path for \(FilePathError.UnableRetrievePath)")
         } catch ParserError.InvalidKey {
             print("Error retrieving data for the key: \(ParserError.InvalidKey)")
         } catch ParserError.InvalidCastToInt {
@@ -70,10 +76,40 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         }
     }
     
-    @IBAction func toggleMusicPressed(sender: AnyObject) {
-        
+    func retrieveFilePath(name: String, format: String) throws -> String {
+        guard let path = NSBundle.mainBundle().pathForResource(name, ofType: format) else {
+            throw FilePathError.UnableRetrievePath("\(name).\(format)")
+        }
+        return path
     }
-
+    
+    func configureMusicPlayer() {
+        do {
+            guard let url = NSURL(string: try retrieveFilePath("music", format: "mp3")) else {
+                throw FilePathError.UnableCreateURL
+            }
+            musicPlayer = try AVAudioPlayer(contentsOfURL: url)
+            musicPlayer.prepareToPlay()
+            musicPlayer.numberOfLoops = -1
+            musicPlayer.play()
+        } catch FilePathError.UnableCreateURL {
+            print("Could not create URL for file path")
+        } catch let error as NSError {
+            print(error.debugDescription)
+        }
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func toggleMusicPressed(sender: UIButton) {
+        if musicPlayer.playing {
+            musicPlayer.stop()
+            sender.alpha = 0.2
+        } else {
+            musicPlayer.play()
+            sender.alpha = 1.0
+        }
+    }
 }
 
 // MARK: - Error Handling
@@ -81,6 +117,11 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 enum ParserError: ErrorType {
     case InvalidKey(String)
     case InvalidCastToInt
+}
+
+enum FilePathError: ErrorType {
+    case UnableRetrievePath(String)
+    case UnableCreateURL
 }
 
 // MARK: - Extensions
