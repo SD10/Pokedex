@@ -13,6 +13,12 @@ class PokemonDetailViewController: UIViewController {
     // MARK: - Properties
     
     var pokemon: Pokemon?
+    var statsRetrieved = false {
+        didSet {
+            // FIXME: Don't force unwrap here
+            retrievePokemonDescription(pokemon!)
+        }
+    }
     
     // MARK: - IBOutlets
     
@@ -37,7 +43,7 @@ class PokemonDetailViewController: UIViewController {
             nameLabel.text = pokemon.name.capitalizedString
             mainImage.image = UIImage(named: "\(pokemon.pokedexId)")
             pokedexLabel.text = "\(pokemon.pokedexId)"
-            retrievePokemonDetails(pokemon)
+            retrievePokemonStats(pokemon)
         }
     }
 
@@ -47,19 +53,24 @@ class PokemonDetailViewController: UIViewController {
     
     // MARK: - Methods
     
-    func retrievePokemonDetails(pokemon: Pokemon) {
+    func retrievePokemonStats(pokemon: Pokemon) {
         DataService.singleService.downloadPokemonDetails(pokemon) { (configuredPokemon: Pokemon) in
             dispatch_async(dispatch_get_main_queue()) {
-                self.updateUserInterface(configuredPokemon)
+                self.updatePokemonStats(configuredPokemon)
+                self.statsRetrieved = true
             }
         }
     }
     
-    func updateUserInterface(pokemon: Pokemon) {
-        if let description = pokemon.description {
-            descriptionLabel.text = description
+    func retrievePokemonDescription(pokemon: Pokemon) {
+        DataService.singleService.downloadPokemonDescription(pokemon) { (configuredPokemon: Pokemon) in
+            dispatch_async(dispatch_get_main_queue()) {
+                self.updatePokemonDescription(configuredPokemon)
+            }
         }
-        
+    }
+    
+    func updatePokemonStats(pokemon: Pokemon) {
         if let type = pokemon.type {
             typeLabel.text = type
         }
@@ -78,6 +89,12 @@ class PokemonDetailViewController: UIViewController {
         
         if let attack = pokemon.attack {
             attackLabel.text = attack
+        }
+    }
+    
+    func updatePokemonDescription(pokemon: Pokemon) {
+        if let description = pokemon.description {
+            descriptionLabel.text = description
         }
     }
     

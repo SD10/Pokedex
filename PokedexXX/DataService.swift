@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 
 class DataService {
     static let singleService = DataService()
@@ -23,6 +22,7 @@ class DataService {
         return _pokemonURL
     }
     
+    //FIXME: Refactor using relative to URL
     func downloadPokemonDetails(pokemon: Pokemon, completionHandler: DownloadComplete) {
         let urlString = "\(baseURL)\(pokemonURL)\(pokemon.pokedexId)"
         
@@ -38,5 +38,25 @@ class DataService {
                 completionHandler(configuredPokemon)
             }
         }
+    }
+    
+    func downloadPokemonDescription(pokemon: Pokemon, completionHandler: DownloadComplete) {
+        //FIXME: Don't force unwrap here
+        let urlString = "\(baseURL)\(pokemon.descriptionURI!)"
+        
+        guard let url = NSURL(string: urlString) else {
+            return
+        }
+        
+        let networkOperation = NetworkOperation(url: url)
+        
+        networkOperation.downloadJSONFromURL { (jsonDictionary: [String : AnyObject]?) in
+            if let jsonDictionary = jsonDictionary {
+                let configuredPokemon = pokemon.configurePokemonDescription(jsonDictionary)
+                print("I was configured: \(configuredPokemon)")
+                completionHandler(configuredPokemon)
+            }
+        }
+        
     }
 }

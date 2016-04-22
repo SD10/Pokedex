@@ -28,6 +28,7 @@ class NetworkOperation {
             } else {
                 if let results = response.result.value as? [String: AnyObject] {
                     completion(results)
+                    print(results)
                 }
             }
         }

@@ -13,6 +13,7 @@ class Pokemon {
     // MARK: - Properties
     private var _name: String
     private var _pokedexId: Int
+    private var _descriptionURI: String?
     private var _description: String?
     private var _type: String?
     private var _defense: String?
@@ -28,6 +29,10 @@ class Pokemon {
     
     var pokedexId: Int {
         return _pokedexId
+    }
+    
+    var descriptionURI: String? {
+        return _descriptionURI
     }
     
     var description: String? {
@@ -86,24 +91,33 @@ class Pokemon {
         }
         
         // FIXME: Consider making primary and secondary types
-        if let typesDict = dictionary["types"] as? [[String: String]] where typesDict.count > 0 {
-            if let typeName = typesDict[0]["name"] {
+        if let typesArray = dictionary["types"] as? [[String: String]] where typesArray.count > 0 {
+            if let typeName = typesArray[0]["name"] {
                 self._type = typeName.capitalizedString
             }
             
-            if typesDict.count > 1{
-                for x in 1..<typesDict.count {
-                    if let typeName = typesDict[x]["name"] {
+            if typesArray.count > 1{
+                for x in 1..<typesArray.count {
+                    if let typeName = typesArray[x]["name"] {
                         self._type! += "/\(typeName.capitalizedString)"
                     }
                 }
             }
         }
         
+        if let descriptionArray = dictionary["descriptions"] as? [[String: String]] where descriptionArray.count > 0 {
+            if let url = descriptionArray[0]["resource_uri"] {
+                self._descriptionURI = url
+            }
+        }
+        
+        return self
+    }
+    
+    func configurePokemonDescription(dictionary: [String: AnyObject]) -> Pokemon {
         if let description = dictionary["description"] as? String {
             self._description = description
         }
-        
         return self
     }
 }
