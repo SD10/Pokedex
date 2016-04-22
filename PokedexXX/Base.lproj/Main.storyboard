@@ -59,6 +59,12 @@
                                 <rect key="frame" x="0.0" y="55" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="No results found for 'asdf'" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewc-aU-zhW">
+                                <rect key="frame" x="201" y="119" width="198" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="odd-WY-X8N">
                                 <rect key="frame" x="20" y="119" width="560" height="461"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -121,12 +127,14 @@
                             <constraint firstItem="odd-WY-X8N" firstAttribute="top" secondItem="oPY-nz-wXb" secondAttribute="bottom" constant="20" id="cyj-Xp-7Vy"/>
                             <constraint firstItem="oPY-nz-wXb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="f5E-CN-DMM"/>
                             <constraint firstItem="Hbv-Q4-Xee" firstAttribute="top" secondItem="oPY-nz-wXb" secondAttribute="bottom" id="fsg-OD-vuA"/>
+                            <constraint firstItem="ewc-aU-zhW" firstAttribute="top" secondItem="oPY-nz-wXb" secondAttribute="bottom" constant="20" id="mRU-IM-ZWj"/>
                             <constraint firstAttribute="trailing" secondItem="Ke8-KF-2LV" secondAttribute="trailing" id="ndw-Y6-JLG"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Hbv-Q4-Xee" secondAttribute="bottom" id="nrN-Hd-oJy"/>
                             <constraint firstAttribute="trailing" secondItem="oPY-nz-wXb" secondAttribute="trailing" id="oJZ-wz-wrm"/>
                             <constraint firstItem="Ke8-KF-2LV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="rUA-K3-mKP"/>
                             <constraint firstItem="odd-WY-X8N" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="tkA-4e-5RC"/>
                             <constraint firstItem="Ke8-KF-2LV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wrD-6h-Tak"/>
+                            <constraint firstItem="ewc-aU-zhW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yvA-uK-ssY"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -136,6 +144,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="odd-WY-X8N" id="qQW-3O-O09"/>
+                        <outlet property="noResultsLabel" destination="ewc-aU-zhW" id="GJl-OG-QO3"/>
                         <outlet property="searchBar" destination="oPY-nz-wXb" id="Rc2-j8-fhi"/>
                         <segue destination="Igr-Lv-ZwJ" kind="show" identifier="showPokemonDetail" id="690-0M-tdw"/>
                     </connections>

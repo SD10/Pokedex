@@ -22,6 +22,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var noResultsLabel: UILabel!
+
     
     // MARK: - View Lifecycle
 
@@ -196,6 +198,8 @@ extension ViewController: UISearchBarDelegate {
             inSearchMode = true
             let lowerString = searchText.lowercaseString
             filteredPokemon = pokemon.filter({$0.name.containsString(lowerString)})
+            noResultsLabel.hidden = filteredPokemon.count > 0
+            noResultsLabel.text = "No results found for '\(lowerString)'"
             collectionView.reloadData()
         }
     }
