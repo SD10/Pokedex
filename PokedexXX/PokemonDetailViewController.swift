@@ -98,6 +98,10 @@ class PokemonDetailViewController: UIViewController {
         }
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     
     // MARK: - Actions
     @IBAction func onBackPressed(sender: AnyObject) {
