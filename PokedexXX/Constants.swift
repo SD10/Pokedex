@@ -16,5 +16,7 @@ let URL_POKEMON = "/api/v1/pokemon/"
 let SHOW_DETAIL = "showPokemonDetail"
 
 // MARK: - Completion Handlers
-typealias DownloadComplete = () -> Void
+typealias DownloadComplete = (Pokemon) -> Void
+
+typealias JSONDictionaryCompletion = [String: AnyObject]? -> Void
 
