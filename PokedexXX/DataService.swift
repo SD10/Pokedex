@@ -23,22 +23,20 @@ class DataService {
         return _pokemonURL
     }
     
-    func downloadPokemonDetails(pokedexId: String, completionHandler: DownloadComplete) throws {
-        let urlString = "\(baseURL)\(pokemonURL)\(pokedexId)"
+    func downloadPokemonDetails(pokemon: Pokemon, completionHandler: DownloadComplete) {
+        let urlString = "\(baseURL)\(pokemonURL)\(pokemon.pokedexId)"
         
         guard let url = NSURL(string: urlString) else {
-            throw DataServiceError.InvalidURL("urlString")
+            return
         }
         
-        Alamofire.request(.GET, url).responseJSON { (response: Response<AnyObject, NSError>) in
-            let result = response.result
-            print(result)
+        let networkOperation = NetworkOperation(url: url)
+        
+        networkOperation.downloadJSONFromURL { (jsonDictionary: [String : AnyObject]?) in
+            if let jsonDictionary = jsonDictionary {
+                let configuredPokemon = pokemon.configurePokemonFromJSON(jsonDictionary)
+                completionHandler(configuredPokemon)
+            }
         }
     }
-}
-
-// MARK: - Error Handling
-
-enum DataServiceError: ErrorType {
-    case InvalidURL(String)
 }
