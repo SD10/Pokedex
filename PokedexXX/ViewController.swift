@@ -17,6 +17,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     lazy var filteredPokemon = [Pokemon]()
     var musicPlayer = AVAudioPlayer()
     var inSearchMode = false
+    var colorTheme = UIColor.squirtleBlue()
     
     // MARK: - IBOutlets
     

@@ -428,11 +428,20 @@
                         <outlet property="defenseLabel" destination="W8r-Xa-6Kt" id="cRz-xQ-vuT"/>
                         <outlet property="descriptionLabel" destination="7kc-YA-bzE" id="byS-lV-NBH"/>
                         <outlet property="evolutionLabel" destination="8Rv-hd-st2" id="PTL-JZ-65K"/>
+                        <outlet property="evolutionView" destination="yjX-r4-JtT" id="0rm-g5-WJx"/>
                         <outlet property="heightLabel" destination="x0m-g7-Mbc" id="KAm-vZ-bwf"/>
+                        <outlet property="mainHeader" destination="meP-7D-vXJ" id="94t-yI-qFD"/>
                         <outlet property="mainImage" destination="vB7-B1-zqp" id="LCK-cR-rx3"/>
                         <outlet property="nameLabel" destination="1lB-bq-mfJ" id="JM1-hM-hNb"/>
                         <outlet property="nextEvoImage" destination="6BI-eh-5H9" id="vko-Mg-Y9e"/>
                         <outlet property="pokedexLabel" destination="36I-T0-GCi" id="dLt-31-V8o"/>
+                        <outlet property="segmentedControl" destination="cZa-me-fID" id="5l4-xo-nus"/>
+                        <outlet property="staticAttackLabel" destination="gAt-jr-DSR" id="8eK-MR-XWn"/>
+                        <outlet property="staticDefenseLabel" destination="MuI-B8-Wmt" id="Nd2-D4-JfJ"/>
+                        <outlet property="staticHeightLabel" destination="rur-dl-rKO" id="rM5-oH-fiY"/>
+                        <outlet property="staticPokedexLabel" destination="mhC-C4-FAt" id="Ggg-yU-7v0"/>
+                        <outlet property="staticTypeLabel" destination="4Pi-vs-LLU" id="VX9-S9-Jju"/>
+                        <outlet property="staticWeightLabel" destination="b9E-Xk-dm9" id="OcW-DB-Lf4"/>
                         <outlet property="typeLabel" destination="QnE-3m-K4e" id="aby-ti-8Wu"/>
                         <outlet property="weightLabel" destination="mKt-fe-0bA" id="8zc-ec-96K"/>
                     </connections>

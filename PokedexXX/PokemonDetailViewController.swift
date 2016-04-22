@@ -13,6 +13,7 @@ class PokemonDetailViewController: UIViewController {
     // MARK: - Properties
     
     var pokemon: Pokemon?
+    var colorTheme: UIColor?
     var statsRetrieved = false {
         didSet {
             // FIXME: Don't force unwrap here
@@ -22,6 +23,18 @@ class PokemonDetailViewController: UIViewController {
     
     // MARK: - IBOutlets
     
+    // Static Labels
+    @IBOutlet weak var mainHeader: UIView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var staticTypeLabel: UILabel!
+    @IBOutlet weak var staticDefenseLabel: UILabel!
+    @IBOutlet weak var staticHeightLabel: UILabel!
+    @IBOutlet weak var staticPokedexLabel: UILabel!
+    @IBOutlet weak var staticWeightLabel: UILabel!
+    @IBOutlet weak var staticAttackLabel: UILabel!
+    @IBOutlet weak var evolutionView: UIView!
+    
+    // Data Labels
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
