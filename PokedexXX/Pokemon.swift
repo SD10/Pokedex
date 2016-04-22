@@ -68,13 +68,6 @@ class Pokemon {
     // MARK: - Methods
     
     func configurePokemonFromJSON(dictionary: [String: AnyObject]) -> Pokemon {
-        if let description = dictionary["description"] as? String {
-            self._description = description
-        }
-        
-        if let type = dictionary["type"] as? String {
-            self._type = type
-        }
         
         if let defense = dictionary["defense"] as? Int {
             self._defense = "\(defense)"
@@ -92,12 +85,24 @@ class Pokemon {
             self._attack = "\(attack)"
         }
         
-        print(self._attack)
-        print(self._description)
-        print(self._weight)
-        print(self._defense)
-        print(self._height)
-        print(self._type)
+        // FIXME: Consider making primary and secondary types
+        if let typesDict = dictionary["types"] as? [[String: String]] where typesDict.count > 0 {
+            if let typeName = typesDict[0]["name"] {
+                self._type = typeName.capitalizedString
+            }
+            
+            if typesDict.count > 1{
+                for x in 1..<typesDict.count {
+                    if let typeName = typesDict[x]["name"] {
+                        self._type! += "/\(typeName.capitalizedString)"
+                    }
+                }
+            }
+        }
+        
+        if let description = dictionary["description"] as? String {
+            self._description = description
+        }
         
         return self
     }
