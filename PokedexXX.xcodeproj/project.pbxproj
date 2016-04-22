@@ -18,6 +18,7 @@
 		B0E8F5881CC979FE0062DE00 /* PokemonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E8F5871CC979FE0062DE00 /* PokemonCell.swift */; };
 		B0E8F58A1CC982D10062DE00 /* csvParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E8F5891CC982D10062DE00 /* csvParser.swift */; };
 		B0E8F58D1CC98F8D0062DE00 /* pokemon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B0E8F58C1CC98F8D0062DE00 /* pokemon.ttf */; };
+		B0E8F5911CC9A7090062DE00 /* PokemonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E8F5901CC9A7090062DE00 /* PokemonDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		B0E8F5871CC979FE0062DE00 /* PokemonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonCell.swift; sourceTree = "<group>"; };
 		B0E8F5891CC982D10062DE00 /* csvParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = csvParser.swift; sourceTree = "<group>"; };
 		B0E8F58C1CC98F8D0062DE00 /* pokemon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pokemon.ttf; sourceTree = "<group>"; };
+		B0E8F5901CC9A7090062DE00 /* PokemonDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			children = (
 				B0E8F56A1CC96EE70062DE00 /* AppDelegate.swift */,
 				B0E8F56C1CC96EE70062DE00 /* ViewController.swift */,
+				B0E8F5901CC9A7090062DE00 /* PokemonDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				B0E8F56B1CC96EE70062DE00 /* AppDelegate.swift in Sources */,
 				B0E8F5841CC972100062DE00 /* Pokemon.swift in Sources */,
 				B0E8F58A1CC982D10062DE00 /* csvParser.swift in Sources */,
+				B0E8F5911CC9A7090062DE00 /* PokemonDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

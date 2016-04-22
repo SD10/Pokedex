@@ -46,7 +46,6 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     }
     
     func parsePokemonCSV() {
-        
         do {
             let path = try retrieveFilePath("pokemon", format: "csv")
             let csv = try CSV(contentsOfURL: path)
@@ -120,6 +119,18 @@ class ViewController: UIViewController, UICollectionViewDelegate {
             sender.alpha = 1.0
         }
     }
+    
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showPokemonDetail" {
+            if let destinationViewController = segue.destinationViewController as? PokemonDetailViewController {
+                if let sender = sender as? Pokemon {
+                    destinationViewController.pokemon = sender
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Error Handling
@@ -161,7 +172,8 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
+        let selectedPokemon = inSearchMode ? filteredPokemon[indexPath.row] : pokemon[indexPath.row]
+        performSegueWithIdentifier("showPokemonDetail", sender: selectedPokemon)
     }
 }
 
