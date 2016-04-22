@@ -14,10 +14,12 @@ class PokemonDetailViewController: UIViewController {
     
     var pokemon: Pokemon?
     var colorTheme: UIColor?
+    
     var statsRetrieved = false {
         didSet {
-            // FIXME: Don't force unwrap here
-            retrievePokemonDescription(pokemon!)
+            if let pokemon = pokemon {
+                downloadPokemonDescription(pokemon)
+            }
         }
     }
     
@@ -56,7 +58,7 @@ class PokemonDetailViewController: UIViewController {
             nameLabel.text = pokemon.name.capitalizedString
             mainImage.image = UIImage(named: "\(pokemon.pokedexId)")
             pokedexLabel.text = "\(pokemon.pokedexId)"
-            retrievePokemonStats(pokemon)
+            downloadPokemonStats(pokemon)
         }
     }
 
@@ -66,19 +68,20 @@ class PokemonDetailViewController: UIViewController {
     
     // MARK: - Methods
     
-    func retrievePokemonStats(pokemon: Pokemon) {
-        DataService.singleService.downloadPokemonDetails(pokemon) { (configuredPokemon: Pokemon) in
+    func downloadPokemonStats(pokemon: Pokemon) {
+        DataService.singleService.downloadDataFromPokeAPI("\(URL_POKEMON)\(pokemon.pokedexId)", pokemon: pokemon) { (configuredPokemon: Pokemon) in
             dispatch_async(dispatch_get_main_queue()) {
-                self.updatePokemonStats(configuredPokemon)
+                self.updatePokemonStats(pokemon)
                 self.statsRetrieved = true
             }
         }
     }
     
-    func retrievePokemonDescription(pokemon: Pokemon) {
-        DataService.singleService.downloadPokemonDescription(pokemon) { (configuredPokemon: Pokemon) in
+    func downloadPokemonDescription(pokemon: Pokemon) {
+        DataService.singleService.downloadDataFromPokeAPI("\(pokemon.descriptionURI!)", pokemon: pokemon) {
+            (configuredPokemon: Pokemon) in
             dispatch_async(dispatch_get_main_queue()) {
-                self.updatePokemonDescription(configuredPokemon)
+                self.updatePokemonDescription(pokemon)
             }
         }
     }

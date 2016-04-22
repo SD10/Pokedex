@@ -123,6 +123,10 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         }
     }
     
+    @IBAction func settingsButtonPressed(sender: AnyObject) {
+        
+    }
+    
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

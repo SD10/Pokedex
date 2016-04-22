@@ -11,6 +11,7 @@ import Foundation
 class Pokemon {
     
     // MARK: - Properties
+    
     private var _name: String
     private var _pokedexId: Int
     private var _descriptionURI: String?
@@ -21,8 +22,11 @@ class Pokemon {
     private var _weight: String?
     private var _attack: String?
     private var _nextEvolutionText: String?
+    private var _nextEvolutionLvl: String?
+    private var _nextEvolutionId: String?
     
     // MARK: - Getter Methods
+    
     var name: String {
         return _name
     }
@@ -63,6 +67,14 @@ class Pokemon {
         return _nextEvolutionText
     }
     
+    var nextEvolutionLvl: String? {
+        return _nextEvolutionLvl
+    }
+    
+    var nextEvolutionId: String? {
+        return _nextEvolutionId
+    }
+    
     // MARK: - Initializers
     
     init(name: String, pokedexId: Int) {
@@ -73,6 +85,11 @@ class Pokemon {
     // MARK: - Methods
     
     func configurePokemonFromJSON(dictionary: [String: AnyObject]) -> Pokemon {
+        
+        if let description = dictionary["description"] as? String {
+            self._description = description
+            return self
+        }
         
         if let defense = dictionary["defense"] as? Int {
             self._defense = "\(defense)"
@@ -111,13 +128,6 @@ class Pokemon {
             }
         }
         
-        return self
-    }
-    
-    func configurePokemonDescription(dictionary: [String: AnyObject]) -> Pokemon {
-        if let description = dictionary["description"] as? String {
-            self._description = description
-        }
         return self
     }
 }

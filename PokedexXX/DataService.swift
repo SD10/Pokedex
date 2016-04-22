@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DataService {
+struct DataService {
     static let singleService = DataService()
     
     private var _baseURL = "http://pokeapi.co"
@@ -22,13 +22,13 @@ class DataService {
         return _pokemonURL
     }
     
-    //FIXME: Refactor using relative to URL
-    func downloadPokemonDetails(pokemon: Pokemon, completionHandler: DownloadComplete) {
-        let urlString = "\(baseURL)\(pokemonURL)\(pokemon.pokedexId)"
+    func downloadDataFromPokeAPI(query: String, pokemon: Pokemon, completionHandler: DownloadComplete) {
         
-        guard let url = NSURL(string: urlString) else {
+        guard let url = NSURL(string: "\(baseURL)\(query)") else {
             return
         }
+        
+        print("THIS IS THE URL: \(url)")
         
         let networkOperation = NetworkOperation(url: url)
         
@@ -38,25 +38,5 @@ class DataService {
                 completionHandler(configuredPokemon)
             }
         }
-    }
-    
-    func downloadPokemonDescription(pokemon: Pokemon, completionHandler: DownloadComplete) {
-        //FIXME: Don't force unwrap here
-        let urlString = "\(baseURL)\(pokemon.descriptionURI!)"
-        
-        guard let url = NSURL(string: urlString) else {
-            return
-        }
-        
-        let networkOperation = NetworkOperation(url: url)
-        
-        networkOperation.downloadJSONFromURL { (jsonDictionary: [String : AnyObject]?) in
-            if let jsonDictionary = jsonDictionary {
-                let configuredPokemon = pokemon.configurePokemonDescription(jsonDictionary)
-                print("I was configured: \(configuredPokemon)")
-                completionHandler(configuredPokemon)
-            }
-        }
-        
     }
 }
