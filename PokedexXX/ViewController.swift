@@ -194,6 +194,7 @@ extension ViewController: UISearchBarDelegate {
             inSearchMode = false
             collectionView.reloadData()
             view.endEditing(true)
+            noResultsLabel.hidden = true
         } else {
             inSearchMode = true
             let lowerString = searchText.lowercaseString
