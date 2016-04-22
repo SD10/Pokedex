@@ -10,6 +10,12 @@ import UIKit
 
 class PokemonDetailViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    var pokemon: Pokemon?
+    
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -23,14 +29,15 @@ class PokemonDetailViewController: UIViewController {
     @IBOutlet weak var nextEvoImage: UIImageView!
     @IBOutlet weak var evolutionLabel: UILabel!
     
-    var pokemon: Pokemon?
+    // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         if let pokemon = pokemon {
-            nameLabel.text = pokemon.name
+            nameLabel.text = pokemon.name.capitalizedString
             mainImage.image = UIImage(named: "\(pokemon.pokedexId)")
-            retrievePokemonData()
+            pokedexLabel.text = "\(pokemon.pokedexId)"
+            retrievePokemonDetails(pokemon)
         }
     }
 
@@ -40,17 +47,40 @@ class PokemonDetailViewController: UIViewController {
     
     // MARK: - Methods
     
-    func retrievePokemonData() {
-        do {
-            try DataService.singleService.downloadPokemonDetails("\(pokemon!.pokedexId)", completionHandler: {
-                
-            })
-        } catch DataServiceError.InvalidURL {
-            print("Invalid URL: \(DataServiceError.InvalidURL)")
-        } catch let error as NSError {
-            print(error.debugDescription)
+    func retrievePokemonDetails(pokemon: Pokemon) {
+        DataService.singleService.downloadPokemonDetails(pokemon) { (configuredPokemon: Pokemon) in
+            dispatch_async(dispatch_get_main_queue()) {
+                self.updateUserInterface(configuredPokemon)
+            }
         }
     }
+    
+    func updateUserInterface(pokemon: Pokemon) {
+        if let description = pokemon.description {
+            descriptionLabel.text = description
+        }
+        
+        if let type = pokemon.type {
+            typeLabel.text = type
+        }
+        
+        if let defense = pokemon.defense {
+            defenseLabel.text = defense
+        }
+        
+        if let height = pokemon.height {
+            heightLabel.text = height
+        }
+        
+        if let weight = pokemon.weight {
+            weightLabel.text = weight
+        }
+        
+        if let attack = pokemon.attack {
+            attackLabel.text = attack
+        }
+    }
+    
     
     // MARK: - Actions
     @IBAction func onBackPressed(sender: AnyObject) {

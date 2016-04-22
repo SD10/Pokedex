@@ -21,6 +21,7 @@
 		B0E8F5911CC9A7090062DE00 /* PokemonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E8F5901CC9A7090062DE00 /* PokemonDetailViewController.swift */; };
 		B0E8F5931CC9C45C0062DE00 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E8F5921CC9C45C0062DE00 /* Constants.swift */; };
 		B0E8F5961CC9D0C40062DE00 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E8F5951CC9D0C40062DE00 /* DataService.swift */; };
+		B0E8F5981CC9DFFE0062DE00 /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E8F5971CC9DFFE0062DE00 /* NetworkOperation.swift */; };
 		CFB8A85A93F389A1C7211ABD /* Pods_PokedexXX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0049F2B27206EAB334BAECDB /* Pods_PokedexXX.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		B0E8F5901CC9A7090062DE00 /* PokemonDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonDetailViewController.swift; sourceTree = "<group>"; };
 		B0E8F5921CC9C45C0062DE00 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B0E8F5951CC9D0C40062DE00 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		B0E8F5971CC9DFFE0062DE00 /* NetworkOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
 		F6E9F39B7D651384323C307D /* Pods-PokedexXX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokedexXX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PokedexXX/Pods-PokedexXX.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,6 +176,7 @@
 		B0E8F5941CC9CDF90062DE00 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B0E8F5971CC9DFFE0062DE00 /* NetworkOperation.swift */,
 				B0E8F5951CC9D0C40062DE00 /* DataService.swift */,
 			);
 			name = Services;
@@ -314,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0E8F56D1CC96EE70062DE00 /* ViewController.swift in Sources */,
+				B0E8F5981CC9DFFE0062DE00 /* NetworkOperation.swift in Sources */,
 				B0E8F5881CC979FE0062DE00 /* PokemonCell.swift in Sources */,
 				B0E8F56B1CC96EE70062DE00 /* AppDelegate.swift in Sources */,
 				B0E8F5841CC972100062DE00 /* Pokemon.swift in Sources */,
