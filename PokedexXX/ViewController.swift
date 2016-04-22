@@ -30,6 +30,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         collectionView.delegate = self
         collectionView.dataSource = self
         searchBar.delegate = self
+        searchBar.returnKeyType = .Done
         parsePokemonCSV()
         configureMusicPlayer()
     }
@@ -104,6 +105,10 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         return searchBar.text == nil || searchBar.text == ""
     }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
     // MARK: - Actions
     
     @IBAction func toggleMusicPressed(sender: UIButton) {
@@ -173,12 +178,18 @@ extension ViewController: UISearchBarDelegate {
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         if searchFieldEmpty() {
             inSearchMode = false
+            collectionView.reloadData()
+            view.endEditing(true)
         } else {
             inSearchMode = true
             let lowerString = searchText.lowercaseString
             filteredPokemon = pokemon.filter({$0.name.containsString(lowerString)})
             collectionView.reloadData()
         }
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        view.endEditing(true)
     }
 }
 
