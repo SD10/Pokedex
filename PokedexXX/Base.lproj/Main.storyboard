@@ -181,6 +181,9 @@
                                             <constraint firstAttribute="width" constant="44" id="pyJ-kJ-a5e"/>
                                         </constraints>
                                         <state key="normal" image="back"/>
+                                        <connections>
+                                            <action selector="onBackPressed:" destination="Igr-Lv-ZwJ" eventType="touchUpInside" id="KkU-ZG-62Y"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.30342729680000002" green="0.41858578569999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -271,7 +274,7 @@
                                             <constraint firstAttribute="height" constant="1" id="XEP-Lr-Sif"/>
                                         </constraints>
                                     </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Ufl-HO-vZX">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Ufl-HO-vZX">
                                         <rect key="frame" x="0.0" y="273" width="560" height="25"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Height:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rur-dl-rKO">
@@ -312,10 +315,10 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="DSd-zD-9TK">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="DSd-zD-9TK">
                                         <rect key="frame" x="0.0" y="318" width="560" height="25"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Weight:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9E-Xk-dm9">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weight:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9E-Xk-dm9">
                                                 <rect key="frame" x="0.0" y="0.0" width="140" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="HPH-mQ-t9D"/>
@@ -324,7 +327,7 @@
                                                 <color key="textColor" red="0.30342729680000002" green="0.41858578569999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKt-fe-0bA">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKt-fe-0bA">
                                                 <rect key="frame" x="140" y="0.0" width="140" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="JNC-Fk-arr"/>
@@ -333,7 +336,7 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Base Attack:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAt-jr-DSR">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Base Attack:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAt-jr-DSR">
                                                 <rect key="frame" x="280" y="0.0" width="140" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="IFF-rI-dBi"/>
@@ -342,7 +345,7 @@
                                                 <color key="textColor" red="0.30342729680000002" green="0.41858578569999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="44" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mtg-Nx-c1H">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="44" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mtg-Nx-c1H">
                                                 <rect key="frame" x="420" y="0.0" width="140" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="2Yt-X9-Q7N"/>
@@ -409,6 +412,20 @@
                             <constraint firstItem="WWI-c8-Mgq" firstAttribute="top" secondItem="yjX-r4-JtT" secondAttribute="bottom" constant="8" id="xbK-Vj-ir4"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="attackLabel" destination="Mtg-Nx-c1H" id="x0l-vf-Yez"/>
+                        <outlet property="currentEvoImage" destination="eem-8k-58Y" id="OfW-C1-LgM"/>
+                        <outlet property="defenseLabel" destination="W8r-Xa-6Kt" id="cRz-xQ-vuT"/>
+                        <outlet property="descriptionLabel" destination="7kc-YA-bzE" id="byS-lV-NBH"/>
+                        <outlet property="evolutionLabel" destination="8Rv-hd-st2" id="PTL-JZ-65K"/>
+                        <outlet property="heightLabel" destination="x0m-g7-Mbc" id="KAm-vZ-bwf"/>
+                        <outlet property="mainImage" destination="vB7-B1-zqp" id="LCK-cR-rx3"/>
+                        <outlet property="nameLabel" destination="1lB-bq-mfJ" id="JM1-hM-hNb"/>
+                        <outlet property="nextEvoImage" destination="6BI-eh-5H9" id="vko-Mg-Y9e"/>
+                        <outlet property="pokedexLabel" destination="36I-T0-GCi" id="dLt-31-V8o"/>
+                        <outlet property="typeLabel" destination="QnE-3m-K4e" id="aby-ti-8Wu"/>
+                        <outlet property="weightLabel" destination="mKt-fe-0bA" id="8zc-ec-96K"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yo2-O3-n5X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
