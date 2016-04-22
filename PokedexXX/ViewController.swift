@@ -14,13 +14,14 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     // MARK: - Properties
     
     var pokemon = [Pokemon]()
+    lazy var filteredPokemon = [Pokemon]()
     var musicPlayer = AVAudioPlayer()
+    var inSearchMode = false
     
     // MARK: - IBOutlets
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
-
+    @IBOutlet weak var searchBar: UISearchBar!
     
     // MARK: - View Lifecycle
 
@@ -28,13 +29,13 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        searchBar.delegate = self
         parsePokemonCSV()
         configureMusicPlayer()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
     
     // MARK: - Methods
@@ -99,6 +100,10 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         }
     }
     
+    func searchFieldEmpty() -> Bool {
+        return searchBar.text == nil || searchBar.text == ""
+    }
+    
     // MARK: - Actions
     
     @IBAction func toggleMusicPressed(sender: UIButton) {
@@ -126,6 +131,8 @@ enum FilePathError: ErrorType {
 
 // MARK: - Extensions
 
+    // CollectionView Delegate
+
 extension ViewController: UICollectionViewDataSource {
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -133,14 +140,16 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return pokemon.count
+        return inSearchMode ? filteredPokemon.count : pokemon.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PokemonCell", forIndexPath: indexPath) as? PokemonCell {
-            let pokemonForCell = pokemon[indexPath.row]
+            
+            let pokemonForCell = inSearchMode ? filteredPokemon[indexPath.row] : pokemon[indexPath.row]
             cell.configureCell(pokemonForCell)
             return cell
+            
         } else {
             return UICollectionViewCell()
         }
@@ -155,6 +164,21 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(105, 105)
+    }
+}
+
+    // SearchBar Delegate
+
+extension ViewController: UISearchBarDelegate {
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchFieldEmpty() {
+            inSearchMode = false
+        } else {
+            inSearchMode = true
+            let lowerString = searchText.lowercaseString
+            filteredPokemon = pokemon.filter({$0.name.containsString(lowerString)})
+            collectionView.reloadData()
+        }
     }
 }
 
