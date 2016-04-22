@@ -15,5 +15,6 @@ let URL_POKEMON = "/api/v1/pokemon/"
 // MARK: - Segues
 let SHOW_DETAIL = "showPokemonDetail"
 
-
+// MARK: - Completion Handlers
+typealias DownloadComplete = () -> Void
 

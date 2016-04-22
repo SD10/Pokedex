@@ -125,7 +125,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showPokemonDetail" {
+        if segue.identifier == SHOW_DETAIL {
             if let destinationViewController = segue.destinationViewController as? PokemonDetailViewController {
                 if let sender = sender as? Pokemon {
                     destinationViewController.pokemon = sender
@@ -175,7 +175,7 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let selectedPokemon = inSearchMode ? filteredPokemon[indexPath.row] : pokemon[indexPath.row]
-        performSegueWithIdentifier("showPokemonDetail", sender: selectedPokemon)
+        performSegueWithIdentifier(SHOW_DETAIL, sender: selectedPokemon)
     }
 }
 

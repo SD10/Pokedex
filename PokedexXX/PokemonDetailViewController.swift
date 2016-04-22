@@ -27,13 +27,32 @@ class PokemonDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(pokemon?.name)
+        if let pokemon = pokemon {
+            nameLabel.text = pokemon.name
+            mainImage.image = UIImage(named: "\(pokemon.pokedexId)")
+            retrievePokemonData()
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    // MARK: - Methods
+    
+    func retrievePokemonData() {
+        do {
+            try DataService.singleService.downloadPokemonDetails("\(pokemon!.pokedexId)", completionHandler: {
+                
+            })
+        } catch DataServiceError.InvalidURL {
+            print("Invalid URL: \(DataServiceError.InvalidURL)")
+        } catch let error as NSError {
+            print(error.debugDescription)
+        }
+    }
+    
+    // MARK: - Actions
     @IBAction func onBackPressed(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
