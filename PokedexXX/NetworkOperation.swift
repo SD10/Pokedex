@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class NetworkOperation {
+final class NetworkOperation {
     
     private var _queryURL: NSURL
     

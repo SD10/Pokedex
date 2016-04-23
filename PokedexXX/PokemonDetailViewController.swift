@@ -13,7 +13,7 @@ class PokemonDetailViewController: UIViewController {
     // MARK: - Properties
     
     var pokemon: Pokemon?
-    var colorTheme: UIColor?
+    var colorTheme: ColorTheme?
     
     var statsRetrieved = false {
         didSet {
@@ -60,6 +60,10 @@ class PokemonDetailViewController: UIViewController {
             pokedexLabel.text = "\(pokemon.pokedexId)"
             downloadPokemonStats(pokemon)
         }
+        
+        if let colorTheme = colorTheme {
+            setViewColorTheme(colorTheme)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,6 +71,22 @@ class PokemonDetailViewController: UIViewController {
     }
     
     // MARK: - Methods
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
+    func setViewColorTheme(mode: ColorTheme) {
+        mainHeader.backgroundColor = mode.colorTheme
+        segmentedControl.tintColor = mode.colorTheme
+        staticTypeLabel.textColor = mode.colorTheme
+        staticDefenseLabel.textColor = mode.colorTheme
+        staticHeightLabel.textColor = mode.colorTheme
+        staticPokedexLabel.textColor = mode.colorTheme
+        staticWeightLabel.textColor = mode.colorTheme
+        staticAttackLabel.textColor = mode.colorTheme
+        evolutionView.backgroundColor = mode.colorTheme
+    }
     
     func downloadPokemonStats(pokemon: Pokemon) {
         DataService.singleService.downloadDataFromPokeAPI("\(URL_POKEMON)\(pokemon.pokedexId)", pokemon: pokemon) { (configuredPokemon: Pokemon) in
@@ -113,11 +133,6 @@ class PokemonDetailViewController: UIViewController {
             descriptionLabel.text = description
         }
     }
-    
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-    
     
     // MARK: - Actions
     @IBAction func onBackPressed(sender: AnyObject) {

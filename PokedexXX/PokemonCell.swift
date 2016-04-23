@@ -12,17 +12,20 @@ class PokemonCell: UICollectionViewCell {
     @IBOutlet weak var thumbImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     
-    //var pokemon: Pokemon!
+    var colorTheme = ColorTheme.PikachuYellow
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         layer.cornerRadius = 5.0
+        
     }
     
     func configureCell(pokemon: Pokemon) {
+        nameLabel.backgroundColor = colorTheme.colorTheme
         nameLabel.text = pokemon.name.capitalizedString
         thumbImage.image = UIImage(named: "\(pokemon.pokedexId)")
         pokemon.height
     }
+    
 }

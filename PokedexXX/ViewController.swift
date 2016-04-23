@@ -15,16 +15,16 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     
     var pokemon = [Pokemon]()
     lazy var filteredPokemon = [Pokemon]()
-    var musicPlayer = AVAudioPlayer()
+    lazy var musicPlayer = AVAudioPlayer()
     var inSearchMode = false
-    var colorTheme = UIColor.squirtleBlue()
+    var colorTheme = ColorTheme.PikachuYellow
     
     // MARK: - IBOutlets
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var noResultsLabel: UILabel!
-
+    @IBOutlet weak var mainHeader: UIView!
     
     // MARK: - View Lifecycle
 
@@ -34,6 +34,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         collectionView.dataSource = self
         searchBar.delegate = self
         searchBar.returnKeyType = .Done
+        setViewColorTheme(colorTheme)
         parsePokemonCSV()
         configureMusicPlayer()
     }
@@ -46,6 +47,10 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+    
+    func setViewColorTheme(mode: ColorTheme) {
+        mainHeader.backgroundColor = mode.colorTheme
     }
     
     func parsePokemonCSV() {
@@ -134,6 +139,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
             if let destinationViewController = segue.destinationViewController as? PokemonDetailViewController {
                 if let sender = sender as? Pokemon {
                     destinationViewController.pokemon = sender
+                    destinationViewController.colorTheme = self.colorTheme
                 }
             }
         }
