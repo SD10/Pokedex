@@ -9,14 +9,12 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, UICollectionViewDelegate {
+class ViewController: UIViewController  {
     
     // MARK: - Properties
     
-    var pokemon = [Pokemon]()
-    lazy var filteredPokemon = [Pokemon]()
+    var dataProvider: PokemonDataProvider?
     lazy var musicPlayer = AVAudioPlayer()
-    var inSearchMode = false
     var colorTheme = ColorTheme.PikachuYellow
     
     // MARK: - IBOutlets
@@ -29,13 +27,19 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        searchBar.delegate = self
+        
+        dataProvider = PokemonDataProvider(collectionView: collectionView)
+        dataProvider?.delegate = self
+        collectionView.dataSource = dataProvider
+        collectionView.delegate = dataProvider
+        
+        searchBar.delegate = dataProvider
         searchBar.returnKeyType = .Done
         setViewColorTheme(colorTheme)
-        parsePokemonCSV()
+        
+        dataProvider?.displayPokemons()
         configureMusicPlayer()
     }
 
@@ -51,38 +55,6 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     
     func setViewColorTheme(mode: ColorTheme) {
         mainHeader.backgroundColor = mode.colorTheme
-    }
-    
-    func parsePokemonCSV() {
-        do {
-            let path = try retrieveFilePath("pokemon", format: "csv")
-            let csv = try CSV(contentsOfURL: path)
-            let rows = csv.rows
-            
-            for row in rows {
-                guard let pokeId = row["id"] else {
-                    throw ParserError.InvalidKey("id")
-                }
-                guard let name = row["identifier"] else {
-                    throw ParserError.InvalidKey("identifier")
-                }
-                
-                if let identifier = Int(pokeId) {
-                    let pokemon = Pokemon(name: name, pokedexId: identifier)
-                    self.pokemon.append(pokemon)
-                } else {
-                    throw ParserError.InvalidCastToInt
-                }
-            }
-        } catch FilePathError.UnableRetrievePath {
-            print("Error retrieving file path for \(FilePathError.UnableRetrievePath)")
-        } catch ParserError.InvalidKey {
-            print("Error retrieving data for the key: \(ParserError.InvalidKey)")
-        } catch ParserError.InvalidCastToInt {
-            print("Unable to cast the pokemon ID to Int")
-        } catch let error as NSError {
-            print(error.debugDescription)
-        }
     }
     
     func retrieveFilePath(name: String, format: String) throws -> String {
@@ -106,10 +78,6 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         } catch let error as NSError {
             print(error.debugDescription)
         }
-    }
-    
-    func searchFieldEmpty() -> Bool {
-        return searchBar.text == nil || searchBar.text == ""
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -146,78 +114,21 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     }
 }
 
-// MARK: - Error Handling
+// MARK: PokemonDataProvider Delegate
 
-enum ParserError: ErrorType {
-    case InvalidKey(String)
-    case InvalidCastToInt
-}
-
-enum FilePathError: ErrorType {
-    case UnableRetrievePath(String)
-    case UnableCreateURL
-}
-
-// MARK: - Extensions
-
-    // CollectionView Delegate
-
-extension ViewController: UICollectionViewDataSource {
+extension ViewController: PokemonDataProviderDelegate {
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return pokemon.count > 0 ? 1 : 0
+    func displayDetailsForPokemon(pokemon: Pokemon) {
+        performSegueWithIdentifier(SHOW_DETAIL, sender: pokemon)
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return inSearchMode ? filteredPokemon.count : pokemon.count
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PokemonCell", forIndexPath: indexPath) as? PokemonCell {
-            
-            let pokemonForCell = inSearchMode ? filteredPokemon[indexPath.row] : pokemon[indexPath.row]
-            cell.configureCell(pokemonForCell)
-            return cell
-            
-        } else {
-            return UICollectionViewCell()
-        }
-    }
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let selectedPokemon = inSearchMode ? filteredPokemon[indexPath.row] : pokemon[indexPath.row]
-        performSegueWithIdentifier(SHOW_DETAIL, sender: selectedPokemon)
-    }
-}
-
-extension ViewController: UICollectionViewDelegateFlowLayout {
-
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(105, 105)
-    }
-}
-
-    // SearchBar Delegate
-
-extension ViewController: UISearchBarDelegate {
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchFieldEmpty() {
-            inSearchMode = false
-            collectionView.reloadData()
-            view.endEditing(true)
-            noResultsLabel.hidden = true
-        } else {
-            inSearchMode = true
-            let lowerString = searchText.lowercaseString
-            filteredPokemon = pokemon.filter({$0.name.containsString(lowerString)})
-            noResultsLabel.hidden = filteredPokemon.count > 0
-            noResultsLabel.text = "No results found for '\(lowerString)'"
-            collectionView.reloadData()
-        }
-    }
-    
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func shouldHideSearchField() {
         view.endEditing(true)
+    }
+    
+    func showNoResultsLabel(show: Bool, message: String?) {
+        noResultsLabel.hidden = !show
+        noResultsLabel.text = message
     }
 }
 
