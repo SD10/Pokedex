@@ -7,14 +7,13 @@
 //
 
 import UIKit
-import AVFoundation
 
 class ViewController: UIViewController  {
     
     // MARK: - Properties
     
     var dataProvider: PokemonDataProvider?
-    lazy var musicPlayer = AVAudioPlayer()
+    lazy var musicPlayer = MusicPlayer()
     var colorTheme = ColorTheme.PikachuYellow
     
     // MARK: - IBOutlets
@@ -27,20 +26,26 @@ class ViewController: UIViewController  {
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
+        // Setup data provider
         dataProvider = PokemonDataProvider(collectionView: collectionView)
         dataProvider?.delegate = self
+        
+        // Setup collection view
         collectionView.dataSource = dataProvider
         collectionView.delegate = dataProvider
         
+        // Setup search bar
         searchBar.delegate = dataProvider
         searchBar.returnKeyType = .Done
+        
+        // Set theme
         setViewColorTheme(colorTheme)
         
+        // Init view
         dataProvider?.displayPokemons()
-        configureMusicPlayer()
+        musicPlayer.togglePlay()
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,22 +69,6 @@ class ViewController: UIViewController  {
         return path
     }
     
-    func configureMusicPlayer() {
-        do {
-            guard let url = NSURL(string: try retrieveFilePath("music", format: "mp3")) else {
-                throw FilePathError.UnableCreateURL
-            }
-            musicPlayer = try AVAudioPlayer(contentsOfURL: url)
-            musicPlayer.prepareToPlay()
-            musicPlayer.numberOfLoops = -1
-            musicPlayer.play()
-        } catch FilePathError.UnableCreateURL {
-            print("Could not create URL for file path")
-        } catch let error as NSError {
-            print(error.debugDescription)
-        }
-    }
-    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
     }
@@ -87,13 +76,8 @@ class ViewController: UIViewController  {
     // MARK: - Actions
     
     @IBAction func toggleMusicPressed(sender: UIButton) {
-        if musicPlayer.playing {
-            musicPlayer.stop()
-            sender.alpha = 0.2
-        } else {
-            musicPlayer.play()
-            sender.alpha = 1.0
-        }
+        musicPlayer.togglePlay()
+        sender.alpha = musicPlayer.isPlaying ? 1.0 : 0.2
     }
     
     @IBAction func settingsButtonPressed(sender: AnyObject) {
