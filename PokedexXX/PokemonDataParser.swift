@@ -28,10 +28,7 @@ struct PokemonDataParser {
                 if let identifier = Int(pokeId) {
                     let pokemon = Pokemon(name: name, pokedexId: identifier)
                     pokemons.append(pokemon)
-                } else {
-                    throw ParserError.InvalidCastToInt
-                }
-            }
+                }            }
             
             return pokemons
             

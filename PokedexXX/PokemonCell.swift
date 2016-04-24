@@ -9,6 +9,7 @@
 import UIKit
 
 class PokemonCell: UICollectionViewCell {
+    
     @IBOutlet weak var thumbImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -25,7 +26,6 @@ class PokemonCell: UICollectionViewCell {
         nameLabel.backgroundColor = colorTheme.colorTheme
         nameLabel.text = pokemon.name.capitalizedString
         thumbImage.image = UIImage(named: "\(pokemon.pokedexId)")
-        pokemon.height
     }
     
 }

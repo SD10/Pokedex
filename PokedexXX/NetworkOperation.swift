@@ -11,14 +11,10 @@ import Alamofire
 
 final class NetworkOperation {
     
-    private var _queryURL: NSURL
-    
-    var queryURL: NSURL {
-        return _queryURL
-    }
+    private var queryURL: NSURL
     
     init(url: NSURL) {
-        self._queryURL = url
+        self.queryURL = url
     }
     
     func downloadJSONFromURL(completion: JSONDictionaryCompletion) {

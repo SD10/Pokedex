@@ -23,7 +23,6 @@
 		B0E8F5961CC9D0C40062DE00 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E8F5951CC9D0C40062DE00 /* DataService.swift */; };
 		B0E8F5981CC9DFFE0062DE00 /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E8F5971CC9DFFE0062DE00 /* NetworkOperation.swift */; };
 		B0E8F59A1CCA08300062DE00 /* ProjectColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E8F5991CCA08300062DE00 /* ProjectColors.swift */; };
-		B0E8F59C1CCA85090062DE00 /* ParserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E8F59B1CCA85090062DE00 /* ParserService.swift */; };
 		B0E8F59E1CCAEFFD0062DE00 /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E8F59D1CCAEFFD0062DE00 /* ColorTheme.swift */; };
 		C7DD05CB1CCBDD4D00584405 /* PokemonDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DD05CA1CCBDD4D00584405 /* PokemonDataProvider.swift */; };
 		C7DD05CE1CCBE7F000584405 /* PokemonDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DD05CD1CCBE7F000584405 /* PokemonDataParser.swift */; };
@@ -53,7 +52,6 @@
 		B0E8F5951CC9D0C40062DE00 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		B0E8F5971CC9DFFE0062DE00 /* NetworkOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
 		B0E8F5991CCA08300062DE00 /* ProjectColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectColors.swift; sourceTree = "<group>"; };
-		B0E8F59B1CCA85090062DE00 /* ParserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserService.swift; sourceTree = "<group>"; };
 		B0E8F59D1CCAEFFD0062DE00 /* ColorTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
 		C7DD05CA1CCBDD4D00584405 /* PokemonDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonDataProvider.swift; sourceTree = "<group>"; };
 		C7DD05CD1CCBE7F000584405 /* PokemonDataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonDataParser.swift; sourceTree = "<group>"; };
@@ -105,14 +103,14 @@
 			isa = PBXGroup;
 			children = (
 				B0E8F5941CC9CDF90062DE00 /* Services */,
+				C7DD05CC1CCBDD5900584405 /* DataProvider */,
 				B0E8F5821CC971C80062DE00 /* Model */,
 				B0E8F5811CC971C20062DE00 /* View */,
 				B0E8F5801CC971BF0062DE00 /* Controller */,
 				B0E8F57F1CC971BC0062DE00 /* Layout */,
+				C7DD05D51CCCB4BB00584405 /* Extensions */,
 				B0E8F58B1CC983020062DE00 /* Utilities */,
 				B0E8F57E1CC971B80062DE00 /* Resources */,
-				C7DD05CC1CCBDD5900584405 /* DataProvider */,
-				C7DD05D51CCCB4BB00584405 /* Extensions */,
 			);
 			path = PokedexXX;
 			sourceTree = "<group>";
@@ -168,9 +166,8 @@
 		B0E8F58B1CC983020062DE00 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				C7DD05D11CCBF35B00584405 /* MusicPlayer.swift */,
 				B0E8F5921CC9C45C0062DE00 /* Constants.swift */,
-				B0E8F5991CCA08300062DE00 /* ProjectColors.swift */,
+				C7DD05D11CCBF35B00584405 /* MusicPlayer.swift */,
 				B0E8F5891CC982D10062DE00 /* csvParser.swift */,
 			);
 			name = Utilities;
@@ -197,7 +194,6 @@
 			children = (
 				B0E8F5971CC9DFFE0062DE00 /* NetworkOperation.swift */,
 				B0E8F5951CC9D0C40062DE00 /* DataService.swift */,
-				B0E8F59B1CCA85090062DE00 /* ParserService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -215,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				C7DD05D31CCCB3C800584405 /* NSBundle+ConvenienceMethods.swift */,
+				B0E8F5991CCA08300062DE00 /* ProjectColors.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -364,7 +361,6 @@
 				C7DD05D21CCBF35B00584405 /* MusicPlayer.swift in Sources */,
 				C7DD05D41CCCB3C800584405 /* NSBundle+ConvenienceMethods.swift in Sources */,
 				B0E8F5931CC9C45C0062DE00 /* Constants.swift in Sources */,
-				B0E8F59C1CCA85090062DE00 /* ParserService.swift in Sources */,
 				B0E8F59A1CCA08300062DE00 /* ProjectColors.swift in Sources */,
 				B0E8F59E1CCAEFFD0062DE00 /* ColorTheme.swift in Sources */,
 				B0E8F58A1CC982D10062DE00 /* csvParser.swift in Sources */,
