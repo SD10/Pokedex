@@ -41,15 +41,13 @@ class PokemonDataProvider: NSObject {
 extension PokemonDataProvider {
     
     func displayPokemons() {
-        do {
-            guard let pokemon = try? PokemonDataParser.parsePokemonCSV() else {
-                return
-            }
-            
-            self.pokemon.removeAll()
-            self.pokemon = pokemon
-            collectionView?.reloadData()
+        guard let pokemon = try? PokemonDataParser.parsePokemonCSV() else {
+            return
         }
+        
+        self.pokemon.removeAll()
+        self.pokemon = pokemon
+        collectionView?.reloadData()
     }
 }
 
