@@ -62,13 +62,6 @@ class ViewController: UIViewController  {
         mainHeader.backgroundColor = mode.colorTheme
     }
     
-    func retrieveFilePath(name: String, format: String) throws -> String {
-        guard let path = NSBundle.mainBundle().pathForResource(name, ofType: format) else {
-            throw FilePathError.UnableRetrievePath("\(name).\(format)")
-        }
-        return path
-    }
-    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
     }

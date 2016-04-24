@@ -78,7 +78,6 @@ extension PokemonDataProvider: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let selectedPokemon = inSearchMode ? filteredPokemon[indexPath.row] : pokemon[indexPath.row]
         delegate?.displayDetailsForPokemon(selectedPokemon)
-        //performSegueWithIdentifier(SHOW_DETAIL, sender: selectedPokemon)
     }
 }
 
