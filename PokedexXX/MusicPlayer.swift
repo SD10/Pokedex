@@ -17,8 +17,7 @@ struct MusicPlayer {
     
     mutating private func setUp() {
         do {
-            // FIXME: retrieveFilePath should be part of a generic class or extension
-            guard let url = NSURL(string: try PokemonDataParser.retrieveFilePath("music", format: "mp3")) else {
+            guard let url = NSURL(string: try NSBundle.retrieveFilePath("music", format: "mp3")) else {
                 throw FilePathError.UnableCreateURL
             }
             musicPlayer = try AVAudioPlayer(contentsOfURL: url)

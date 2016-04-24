@@ -13,11 +13,9 @@ struct PokemonDataParser {
     static func parsePokemonCSV() throws -> [Pokemon] {
         var pokemons = [Pokemon]()
         do {
-            let path = try retrieveFilePath("pokemon", format: "csv")
+            let path = try NSBundle.retrieveFilePath("pokemon", format: "csv")
             let csv = try CSV(contentsOfURL: path)
             let rows = csv.rows
-            
-            
             
             for row in rows {
                 guard let pokeId = row["id"] else {
@@ -51,13 +49,6 @@ struct PokemonDataParser {
             return pokemons
         }
     }
-    
-    static func retrieveFilePath(name: String, format: String) throws -> String {
-        guard let path = NSBundle.mainBundle().pathForResource(name, ofType: format) else {
-            throw FilePathError.UnableRetrievePath("\(name).\(format)")
-        }
-        return path
-    }
 }
 
 // MARK: - Error Handling
@@ -65,9 +56,4 @@ struct PokemonDataParser {
 enum ParserError: ErrorType {
     case InvalidKey(String)
     case InvalidCastToInt
-}
-
-enum FilePathError: ErrorType {
-    case UnableRetrievePath(String)
-    case UnableCreateURL
 }

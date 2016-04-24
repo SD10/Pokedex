@@ -28,6 +28,7 @@
 		C7DD05CB1CCBDD4D00584405 /* PokemonDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DD05CA1CCBDD4D00584405 /* PokemonDataProvider.swift */; };
 		C7DD05CE1CCBE7F000584405 /* PokemonDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DD05CD1CCBE7F000584405 /* PokemonDataParser.swift */; };
 		C7DD05D21CCBF35B00584405 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DD05D11CCBF35B00584405 /* MusicPlayer.swift */; };
+		C7DD05D41CCCB3C800584405 /* NSBundle+ConvenienceMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DD05D31CCCB3C800584405 /* NSBundle+ConvenienceMethods.swift */; };
 		CFB8A85A93F389A1C7211ABD /* Pods_PokedexXX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0049F2B27206EAB334BAECDB /* Pods_PokedexXX.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		C7DD05CA1CCBDD4D00584405 /* PokemonDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonDataProvider.swift; sourceTree = "<group>"; };
 		C7DD05CD1CCBE7F000584405 /* PokemonDataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonDataParser.swift; sourceTree = "<group>"; };
 		C7DD05D11CCBF35B00584405 /* MusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
+		C7DD05D31CCCB3C800584405 /* NSBundle+ConvenienceMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+ConvenienceMethods.swift"; sourceTree = "<group>"; };
 		F6E9F39B7D651384323C307D /* Pods-PokedexXX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokedexXX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PokedexXX/Pods-PokedexXX.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,7 +112,7 @@
 				B0E8F58B1CC983020062DE00 /* Utilities */,
 				B0E8F57E1CC971B80062DE00 /* Resources */,
 				C7DD05CC1CCBDD5900584405 /* DataProvider */,
-				C7DD05D11CCBF35B00584405 /* MusicPlayer.swift */,
+				C7DD05D51CCCB4BB00584405 /* Extensions */,
 			);
 			path = PokedexXX;
 			sourceTree = "<group>";
@@ -166,6 +168,7 @@
 		B0E8F58B1CC983020062DE00 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C7DD05D11CCBF35B00584405 /* MusicPlayer.swift */,
 				B0E8F5921CC9C45C0062DE00 /* Constants.swift */,
 				B0E8F5991CCA08300062DE00 /* ProjectColors.swift */,
 				B0E8F5891CC982D10062DE00 /* csvParser.swift */,
@@ -206,6 +209,14 @@
 				C7DD05CD1CCBE7F000584405 /* PokemonDataParser.swift */,
 			);
 			name = DataProvider;
+			sourceTree = "<group>";
+		};
+		C7DD05D51CCCB4BB00584405 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C7DD05D31CCCB3C800584405 /* NSBundle+ConvenienceMethods.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		D593B5985D3B7A053F76C644 /* Frameworks */ = {
@@ -351,6 +362,7 @@
 				C7DD05CB1CCBDD4D00584405 /* PokemonDataProvider.swift in Sources */,
 				B0E8F5961CC9D0C40062DE00 /* DataService.swift in Sources */,
 				C7DD05D21CCBF35B00584405 /* MusicPlayer.swift in Sources */,
+				C7DD05D41CCCB3C800584405 /* NSBundle+ConvenienceMethods.swift in Sources */,
 				B0E8F5931CC9C45C0062DE00 /* Constants.swift in Sources */,
 				B0E8F59C1CCA85090062DE00 /* ParserService.swift in Sources */,
 				B0E8F59A1CCA08300062DE00 /* ProjectColors.swift in Sources */,
