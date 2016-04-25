@@ -56,7 +56,9 @@ class PokemonDetailViewController: UIViewController {
         super.viewDidLoad()
         if let pokemon = pokemon {
             nameLabel.text = pokemon.name.capitalizedString
-            mainImage.image = UIImage(named: "\(pokemon.pokedexId)")
+            let img = UIImage(named: "\(pokemon.pokedexId)")
+            mainImage.image = img
+            currentEvoImage.image = img
             pokedexLabel.text = "\(pokemon.pokedexId)"
             downloadPokemonStats(pokemon)
         }
@@ -125,6 +127,20 @@ class PokemonDetailViewController: UIViewController {
         
         if let attack = pokemon.attack {
             attackLabel.text = attack
+        }
+        
+        let pokemonEvoId = pokemon.nextEvolutionId
+        if pokemonEvoId != "" {
+            nextEvoImage.image = UIImage(named: pokemonEvoId)
+            var labelString = "Next Evolution: \(pokemon.nextEvolutionText)"
+            evolutionLabel.text = labelString
+            if pokemon.nextEvolutionLevel != "" {
+                labelString += "Level \(pokemon.nextEvolutionLevel)"
+            }
+            nextEvoImage.hidden = false
+        } else {
+            nextEvoImage.hidden = true
+            evolutionLabel.text = pokemon.nextEvolutionText
         }
     }
     

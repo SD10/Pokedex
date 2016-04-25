@@ -16,13 +16,14 @@ enum ColorTheme {
     case PikachuYellow
     case OnyxGrey
     
+    
     var colorTheme: UIColor {
         switch self {
-            case .CharamanderRed: return UIColor.charamanderRed()
-            case .SquirtleBlue: return UIColor.squirtleBlue()
-            case .BulbasaurGreen: return UIColor.bulbasaurGreen()
-            case .PikachuYellow: return UIColor.pikachuYellow()
-            case .OnyxGrey: return UIColor.onyxGrey()
+        case .CharamanderRed: return UIColor.charamanderRed()
+        case .SquirtleBlue: return UIColor.squirtleBlue()
+        case .BulbasaurGreen: return UIColor.bulbasaurGreen()
+        case .PikachuYellow: return UIColor.pikachuYellow()
+        case .OnyxGrey: return UIColor.onyxGrey()
         }
     }
 }
