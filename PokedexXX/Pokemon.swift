@@ -21,9 +21,33 @@ final class Pokemon {
     private(set) var height: String?
     private(set) var weight: String?
     private(set) var attack: String?
-    private(set) var nextEvolutionText: String?
-    private(set) var nextEvolutionLvl: String?
-    private(set) var nextEvolutionId: String?
+    
+    private var _nextEvolutionId: String?
+    private var _nextEvolutionText: String?
+    private var _nextEvolutionLvl: String?
+    
+    // MARK: - Getters
+    
+    var nextEvolutionId: String {
+        if _nextEvolutionId == nil {
+            _nextEvolutionId = ""
+        }
+        return _nextEvolutionId!
+    }
+    
+    var nextEvolutionLevel: String {
+        if _nextEvolutionLvl == nil {
+            _nextEvolutionLvl = ""
+        }
+        return _nextEvolutionLvl!
+    }
+    
+    var nextEvolutionText: String {
+        if _nextEvolutionText == nil {
+            _nextEvolutionText = "No Evolutions"
+        }
+        return _nextEvolutionText!
+    }
     
     
     // MARK: - Initializers
@@ -56,6 +80,29 @@ final class Pokemon {
         
         if let attack = dictionary["attack"] as? Int {
             self.attack = "\(attack)"
+        }
+        
+        if let evolutions = dictionary["evolutions"] as? [[String: AnyObject]] where evolutions.count > 0 {
+            if let to = evolutions[0]["to"] as? String {
+                // Can't support mega pokemon right now but
+                // API still has mega data
+                if to.rangeOfString("mega") == nil {
+                    if let uri = evolutions[0]["resource_uri"] as? String {
+                        let newString = uri.stringByReplacingOccurrencesOfString("/api/v1/pokemon/", withString: "")
+                        let pokeNumber = newString.stringByReplacingOccurrencesOfString("/", withString: "")
+                        self._nextEvolutionId = pokeNumber
+                        self._nextEvolutionText = to
+                        
+                        if let level = evolutions[0]["level"] as? Int {
+                            self._nextEvolutionLvl = "\(level)"
+                        }
+                        
+                        print(self.nextEvolutionText)
+                        print(self.nextEvolutionId)
+                        print(self._nextEvolutionLvl)
+                    }
+                }
+            }
         }
         
         // FIXME: Consider making primary and secondary types
